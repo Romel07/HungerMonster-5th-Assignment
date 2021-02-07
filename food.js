@@ -1,14 +1,3 @@
-// const displayFoodList = foodList => {
-// const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s'
-// fetch(url)
-//     .then(response => response.json())
-//     .then(data => (
-//         document.getElementById('food-container').innerText = `data.meals[${foodList}].strMeal`))
-//     // .then(data => console.log((data.meals[0].strMeal),(data.meals[0].strMealThumb),(data.meals[0].strMeasure1),(data.meals[0].strIngredient1)))
-
-//     // console.log()
-// }
-// displayFoodList();
 
 fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`)
     .then(res => res.json())
@@ -20,25 +9,36 @@ const displayFoods = foods => {
 
     foods.forEach(eachFood => {
         const foodDiv = document.createElement('div');
-        const foodInfo = ` <div class="card"><img onclick="displayFoodDetails()" class="card-img-top" style="width:100%" src="${eachFood.strMealThumb}" alt=""> <h3>${eachFood.strMeal}</h3></div>`
+        const foodInfo = ` <div class="card">
+        <img class="card-img-top" style="width:100%" src="${eachFood.strMealThumb}" alt=""> 
+        <h3>${eachFood.strMeal}</h3>
+        <button onclick="displayFoodDetails('${eachFood.idMeal}')">Details</button>
+        </div>`
         foodDiv.innerHTML = foodInfo;
         foodMainDiv.appendChild(foodDiv);
-
-        // 2nd part 
-        // foodDiv.className = 'showDetailsInfo';
-        const displayFoodDetails = foodName => {
-            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`)
-                .then(res => res.json())
-                .then(data => console.log(data.meals));
-
-                // console.log(data.meals);
-
-        }
-
-
-        //2nd part end
-
     });
-
 }
 
+const displayFoodDetails = name => {
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => renderFoodInfo(data.meals[0]))
+    // .then(data => console.log(data.meals[0]))
+
+}
+const renderFoodInfo = food => {
+    console.log(food);
+    const foodDetailsDiv = document.getElementById('foodDetails');
+    foodDetailsDiv.innerHTML = `
+                <img src="${food.strMealThumb}" alt="">  
+                <h1>${food.strMeal}</h1> 
+                <h3>Ingredients</h3>
+                <p>${food.strMeasure1} ${food.strIngredient1}</p>
+                <p>${food.strMeasure2} ${food.strIngredient2}</p>
+                <p>${food.strMeasure3} ${food.strIngredient3}</p>
+                <p>${food.strMeasure4} ${food.strIngredient4}</p>
+                <p>${food.strMeasure5} ${food.strIngredient5}</p>
+                <p>${food.strMeasure6} ${food.strIngredient6}</p>          
+                `;
+}

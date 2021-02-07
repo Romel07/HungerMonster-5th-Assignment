@@ -28,3 +28,9 @@ body{
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20 px;
 }
+#foodDetails{
+    text-align: center;
+}
+#foodDetails img{
+    width: 300px;
+}
