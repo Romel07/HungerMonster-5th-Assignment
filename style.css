@@ -2,16 +2,18 @@ body{
     background-color: rgb(247, 243, 239);
     margin-top: 100px;
     margin-left: 40px;
-    margin-right: 30px;
-    
+    margin-right: 30px;  
 }
+
 .navbar{
     text-align: center;
 }
+
 .btn{
     background-color: orange;
     color: white;
 }
+
 .card{
     background-color: rgb(231, 203, 166);
     border: 10px solid white;
@@ -19,8 +21,7 @@ body{
     margin: 20px;
     padding: 20px;
     text-align: center;
-    width: 220px;
-   
+    width: 220px;   
 }
 
 .food-block{
@@ -28,13 +29,12 @@ body{
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20 px;
 }
+
 #foodDetails{
     text-align: center;
 }
+
 #foodDetails img{
     width: 300px;
 }
-/* #food-container{
-    display: none;
-} */
 
