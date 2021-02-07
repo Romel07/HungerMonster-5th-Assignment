@@ -1,18 +1,26 @@
 
+
 fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`)
     .then(res => res.json())
     .then(data => displayFoods(data.meals));
+
+
 
 const displayFoods = foods => {
     const foodMainDiv = document.getElementById('food-container');
     foodMainDiv.className = 'food-block'
 
     foods.forEach(eachFood => {
-        const foodDiv = document.createElement('div');
+
+
+        const foodDiv = document.createElement('div');  
+
+
         const foodInfo = ` <div class="card">
+        <button onclick="displayFoodDetails('${eachFood.idMeal}')">
         <img class="card-img-top" style="width:100%" src="${eachFood.strMealThumb}" alt=""> 
         <h3>${eachFood.strMeal}</h3>
-        <button onclick="displayFoodDetails('${eachFood.idMeal}')">Details</button>
+        </button>
         </div>`
         foodDiv.innerHTML = foodInfo;
         foodMainDiv.appendChild(foodDiv);
@@ -41,4 +49,32 @@ const renderFoodInfo = food => {
                 <p>${food.strMeasure5} ${food.strIngredient5}</p>
                 <p>${food.strMeasure6} ${food.strIngredient6}</p>          
                 `;
+                
 }
+
+
+// let array = [];
+
+// fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`)
+//     .then(res => res.json())
+//     .then(data => listitems(data.meals[#{
+//       for (let i = 0; i < array.length; i++) {
+//           const element = array[i];
+//       }
+//         }]);
+   
+ 
+
+
+const listOfFood = document.getElementById('searchBar');
+const searchBar = document.getElementById('searchBar');
+
+searchBar.addEventListener('keyup', (e)=>{
+    console.log(e.target.value);
+});
+
+
+
+
+
+

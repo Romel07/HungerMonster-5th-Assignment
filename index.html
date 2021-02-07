@@ -14,16 +14,25 @@
 </head>
 
 <body>
-    
+
+  <!-- <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button">Button</button>
+    </div>
+  </div>
+     -->
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <span class="fa fa-search form-control-feedback"></span>
+          <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> -->
+          <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button onclick="showFoodList()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </nav>
 
 
-      <div id="foodDetails">1st div</div>
+      <div id="foodDetails"></div>
       <div id="food-container"></div>
       <a href=""></a>
     
