@@ -14,7 +14,6 @@ inputFunction = () => {
     }
 }
 
-
 mealFunction = array => {
     if (array == null) {
         alert('Your Searched food is inavailable.');
@@ -36,7 +35,6 @@ mealFunction = array => {
         });
     }
 }
-
 
 displayFoodDetails = name => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`
