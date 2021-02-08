@@ -1,45 +1,51 @@
+inputFunction = () => {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${document.getElementById("inputBox").value}`)
+        .then(res => res.json())
+        .then(data => mealFunction(data.meals));
+}
 
-fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`)
-    .then(res => res.json())
-    .then(data => displayFoods(data.meals));
 
-const displayFoods = foods => {
-    const foodMainDiv = document.getElementById('food-container');
-    foodMainDiv.className = 'food-block'
-    foods.forEach(eachFood => {
+mealFunction = array => {
+    array.forEach(item => {
+        const foodMainDiv = document.getElementById('food-container');
+        foodMainDiv.className = 'food-block'
         const foodDiv = document.createElement('div');
         const foodInfo = ` <div class="card">
-        <button onclick="displayFoodDetails('${eachFood.idMeal}')">
-        <img class="card-img-top" style="width:100%" src="${eachFood.strMealThumb}" alt=""> 
-        <h3>${eachFood.strMeal}</h3>
-        </button>
-        </div>`
+                            <button onclick="displayFoodDetails('${item.idMeal}')">
+                            <img class="card-img-top" style="width:100%" src="${item.strMealThumb}" alt=""> 
+                            <h3>${item.strMeal}</h3>
+                            </button>
+                            </div>`
         foodDiv.innerHTML = foodInfo;
         foodMainDiv.appendChild(foodDiv);
     });
 }
 
 
-const displayFoodDetails = name => {
+displayFoodDetails = name => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`
     fetch(url)
         .then(res => res.json())
         .then(data => renderFoodInfo(data.meals[0]))
 }
-const renderFoodInfo = food => {
+    const renderFoodInfo = food => {
     console.log(food);
     const foodDetailsDiv = document.getElementById('foodDetails');
     foodDetailsDiv.innerHTML = `
-                <img src="${food.strMealThumb}" alt="">  
-                <h1>${food.strMeal}</h1> 
-                <h3>Ingredients</h3>
-                <p>${food.strMeasure1} ${food.strIngredient1}</p>
-                <p>${food.strMeasure2} ${food.strIngredient2}</p>
-                <p>${food.strMeasure3} ${food.strIngredient3}</p>
-                <p>${food.strMeasure4} ${food.strIngredient4}</p>
-                <p>${food.strMeasure5} ${food.strIngredient5}</p>
-                <p>${food.strMeasure6} ${food.strIngredient6}</p>          
-                `;
+                    <img src="${food.strMealThumb}" alt="">  
+                    <h1>${food.strMeal}</h1> 
+                    <h3>Ingredients</h3>
+                    <p>${food.strMeasure1} ${food.strIngredient1}</p>
+                    <p>${food.strMeasure2} ${food.strIngredient2}</p>
+                    <p>${food.strMeasure3} ${food.strIngredient3}</p>
+                    <p>${food.strMeasure4} ${food.strIngredient4}</p>
+                    <p>${food.strMeasure5} ${food.strIngredient5}</p>
+                    <p>${food.strMeasure6} ${food.strIngredient6}</p>          
+                    <p>${food.strMeasure7} ${food.strIngredient7}</p>          
+                    <p>${food.strMeasure8} ${food.strIngredient8}</p>          
+                    <p>${food.strMeasure9} ${food.strIngredient9}</p>          
+                    <p>${food.strMeasure10} ${food.strIngredient10}</p>          
+                    `;
 }
 
 
