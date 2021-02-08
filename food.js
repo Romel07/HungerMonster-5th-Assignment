@@ -1,8 +1,10 @@
 inputFunction = () => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${document.getElementById("inputBox").value}`)
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${document.getElementById("inputBox").value}`;
+    fetch(url)
         .then(res => res.json())
         .then(data => mealFunction(data.meals));
 }
+
 
 
 mealFunction = array => {
@@ -18,6 +20,7 @@ mealFunction = array => {
                             </div>`
         foodDiv.innerHTML = foodInfo;
         foodMainDiv.appendChild(foodDiv);
+        document.getElementById('inputBox').value = '';
     });
 }
 

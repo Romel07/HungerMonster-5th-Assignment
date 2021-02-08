@@ -5,11 +5,13 @@ body{
     margin-right: 30px;  
 }
 
-.navbar{
-    text-align: center;
+span{
+    margin-left: 40%;
+    line-height: 30px;
+    
 }
 
-.btn{
+#search{
     background-color: orange;
     color: white;
 }
