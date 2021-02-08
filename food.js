@@ -23,12 +23,14 @@ mealFunction = array => {
             const foodMainDiv = document.getElementById('food-container');
             foodMainDiv.className = 'food-block'
             const foodDiv = document.createElement('div');
-            const foodInfo = ` <div class="card">
-                                <button onclick="displayFoodDetails('${item.idMeal}')">
+            const foodInfo = ` 
+                                <span onclick="displayFoodDetails('${item.idMeal}')">
+                                <div class="card">
                                 <img class="card-img-top" style="width:100%" src="${item.strMealThumb}" alt=""> 
                                 <h3>${item.strMeal}</h3>
-                                </button>
-                                </div>`
+                                </div>
+                                </span>
+                                `
             foodDiv.innerHTML = foodInfo;
             foodMainDiv.appendChild(foodDiv);
             document.getElementById('inputBox').value = '';
@@ -42,7 +44,7 @@ displayFoodDetails = name => {
         .then(res => res.json())
         .then(data => renderFoodInfo(data.meals[0]))
 }
-    const renderFoodInfo = food => {
+const renderFoodInfo = food => {
     const foodDetailsDiv = document.getElementById('foodDetails');
     foodDetailsDiv.innerHTML = `
                     <img src="${food.strMealThumb}" alt="">  
