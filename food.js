@@ -1,27 +1,40 @@
+
 inputFunction = () => {
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${document.getElementById("inputBox").value}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => mealFunction(data.meals));
+    document.getElementById('foodDetails').innerHTML = '';
+    document.getElementById('food-container').innerHTML = '';
+    const typeInput = document.getElementById("inputBox").value;
+    if (typeInput === '') {
+        alert('Please Enter your Food Name');
+    }
+    else {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${typeInput}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => mealFunction(data.meals));
+    }
 }
 
 
-
 mealFunction = array => {
-    array.forEach(item => {
-        const foodMainDiv = document.getElementById('food-container');
-        foodMainDiv.className = 'food-block'
-        const foodDiv = document.createElement('div');
-        const foodInfo = ` <div class="card">
-                            <button onclick="displayFoodDetails('${item.idMeal}')">
-                            <img class="card-img-top" style="width:100%" src="${item.strMealThumb}" alt=""> 
-                            <h3>${item.strMeal}</h3>
-                            </button>
-                            </div>`
-        foodDiv.innerHTML = foodInfo;
-        foodMainDiv.appendChild(foodDiv);
-        document.getElementById('inputBox').value = '';
-    });
+    if (array == null) {
+        alert('Your Searched food is inavailable.');
+    }
+    else {
+        array.forEach(item => {
+            const foodMainDiv = document.getElementById('food-container');
+            foodMainDiv.className = 'food-block'
+            const foodDiv = document.createElement('div');
+            const foodInfo = ` <div class="card">
+                                <button onclick="displayFoodDetails('${item.idMeal}')">
+                                <img class="card-img-top" style="width:100%" src="${item.strMealThumb}" alt=""> 
+                                <h3>${item.strMeal}</h3>
+                                </button>
+                                </div>`
+            foodDiv.innerHTML = foodInfo;
+            foodMainDiv.appendChild(foodDiv);
+            document.getElementById('inputBox').value = '';
+        });
+    }
 }
 
 
@@ -32,7 +45,6 @@ displayFoodDetails = name => {
         .then(data => renderFoodInfo(data.meals[0]))
 }
     const renderFoodInfo = food => {
-    console.log(food);
     const foodDetailsDiv = document.getElementById('foodDetails');
     foodDetailsDiv.innerHTML = `
                     <img src="${food.strMealThumb}" alt="">  
